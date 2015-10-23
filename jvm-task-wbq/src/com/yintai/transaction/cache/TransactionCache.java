@@ -9,15 +9,15 @@ import com.yintai.transaction.constant.Constant.TransactionStatus;
 import com.yintai.transaction.entity.TransactionInfo;
 
 /**
- * ½»Ò×¼ÇÂ¼»º´æ
+ * äº¤æ˜“è®°å½•ç¼“å­˜
  */
 public class TransactionCache {
 
-	//½»Ò×¼ÇÂ¼»º´æ
+	//äº¤æ˜“è®°å½•ç¼“å­˜
 	private static Map<Integer,List<TransactionInfo>>  transactionMap = new HashMap<Integer,List<TransactionInfo>>();
 	
 	/**
-	 * ¸ù¾İ½»Ò×ÀàĞÍ»ñÈ¡½»Ò×ÁĞ±í
+	 * æ ¹æ®äº¤æ˜“ç±»å‹è·å–äº¤æ˜“åˆ—è¡¨
 	 * @param status
 	 * @return
 	 */
@@ -26,7 +26,7 @@ public class TransactionCache {
 	}
 	
 	/**
-	 * ¸ù¾İ½»Ò××´Ì¬£¬³õÊ¼»¯½»Ò×¼ÇÂ¼»º´æ
+	 * æ ¹æ®äº¤æ˜“çŠ¶æ€ï¼Œåˆå§‹åŒ–äº¤æ˜“è®°å½•ç¼“å­˜
 	 * @param status
 	 */
 	private static List<TransactionInfo> initTransactionInfoList(Integer status){
@@ -41,7 +41,7 @@ public class TransactionCache {
 	}
 	
 	/**
-	 * ¸ù¾İ½»Ò××´Ì¬Ìí¼Ó½»Ò×¼ÇÂ¼»º´æ ,Óë×ÜµÄ×´Ì¬»º´æ
+	 * æ ¹æ®äº¤æ˜“çŠ¶æ€æ·»åŠ äº¤æ˜“è®°å½•ç¼“å­˜ ,ä¸æ€»çš„çŠ¶æ€ç¼“å­˜
 	 * @param status
 	 */
 	public static void addTransactionInfo(Integer status,TransactionInfo transactionInfo){
@@ -51,15 +51,15 @@ public class TransactionCache {
 			 transactionInfoList = initTransactionInfoList(status);
 		 }
 		 
-		 //¸ù¾İ×´Ì¬Ìí¼Ó»º´æÁĞ±í
+		 //æ ¹æ®çŠ¶æ€æ·»åŠ ç¼“å­˜åˆ—è¡¨
 		 transactionInfoList.add(transactionInfo);
 		
-		 //Ìí¼Ó×ÜµÄ×´Ì¬»º´æÁĞ±í
+		 //æ·»åŠ æ€»çš„çŠ¶æ€ç¼“å­˜åˆ—è¡¨
 		 addAllStatusTransactionInfo(transactionInfo.clone());
 	}
 	
 	/**
-	 * Ìí¼Ó×ÜµÄ×´Ì¬»º´æÁĞ±í
+	 * æ·»åŠ æ€»çš„çŠ¶æ€ç¼“å­˜åˆ—è¡¨
 	 * @param transactionInfo
 	 */
 	private static void addAllStatusTransactionInfo(TransactionInfo transactionInfo){

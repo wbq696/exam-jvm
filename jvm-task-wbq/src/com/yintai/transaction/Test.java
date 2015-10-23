@@ -9,7 +9,7 @@ import com.yintai.transaction.entity.UserInfo;
 import com.yintai.transaction.service.TransactionService;
 
 /**
- * ²âÊÔÑéÖ¤Àà
+ * æµ‹è¯•éªŒè¯ç±»
  */
 public class Test {
 
@@ -22,28 +22,28 @@ public class Test {
 	}
 	
 	/**
-	 * ÑéÖ¤
-	 * 1¡¢Ê¹ÓÃÓÃ»§ÕÅÈı´´½¨Ò»Ìõ86Ôª5½ÇÈËÃñ±ÒµÄ½»Ò×¼ÇÂ¼£¬ÑéÖ¤½»Ò××´Ì¬ÎªµÈ´ı¸¶¿î£¬²¢ÇÒ½»Ò×µÄ½ğ¶îÊÇÕıÈ·µÄ¡£
+	 * éªŒè¯
+	 * 1ã€ä½¿ç”¨ç”¨æˆ·å¼ ä¸‰åˆ›å»ºä¸€æ¡86å…ƒ5è§’äººæ°‘å¸çš„äº¤æ˜“è®°å½•ï¼ŒéªŒè¯äº¤æ˜“çŠ¶æ€ä¸ºç­‰å¾…ä»˜æ¬¾ï¼Œå¹¶ä¸”äº¤æ˜“çš„é‡‘é¢æ˜¯æ­£ç¡®çš„ã€‚
 	 */
     public void verifyOne(){
     	
-		//·â×°ÓÃ»§¶ÔÏó
+		//å°è£…ç”¨æˆ·å¯¹è±¡
 		UserInfo userInfo = new UserInfo();
-		userInfo.setUserName("ÕÅÈı");
-		//Ìí¼Ó½»Ò×ĞÅÏ¢£¬×´Ì¬ÎªµÈ´ı¸¶¿î£¬½»Ò×½ğ¶îÎª 86Ôª5½Ç,²¢·µ»Ø½»Ò×ĞÅÏ¢
-		TransactionInfo addTransactionInfo = TransactionService.addTransactionInfo(TransactionStatus.WAIT_PAY.getValue(), userInfo, new BigDecimal(86.5));
-		//²éÑ¯ËùÓĞµÈ´ı¸¶¿îµÄ½»Ò×ĞÅÏ¢
+		userInfo.setUserName("å¼ ä¸‰");
+		//æ·»åŠ äº¤æ˜“ä¿¡æ¯ï¼ŒçŠ¶æ€ä¸ºç­‰å¾…ä»˜æ¬¾ï¼Œäº¤æ˜“é‡‘é¢ä¸º 86å…ƒ5è§’,å¹¶è¿”å›äº¤æ˜“ä¿¡æ¯
+		TransactionInfo addTransactionInfo = TransactionService.addTransactionInfo(String.valueOf(System.currentTimeMillis()),TransactionStatus.WAIT_PAY.getValue(), userInfo, new BigDecimal(86.5));
+		//æŸ¥è¯¢æ‰€æœ‰ç­‰å¾…ä»˜æ¬¾çš„äº¤æ˜“ä¿¡æ¯
 		List<TransactionInfo> waitPayTransactionInfoList = TransactionService.getTransactionInfoList(TransactionStatus.WAIT_PAY.getValue());
 		
 		if(waitPayTransactionInfoList!=null){
 			
 			for(TransactionInfo transactionInfo:waitPayTransactionInfoList){
-				//ÑéÖ¤½»Ò×IDÒ»ÖÂ£¬ÊÇÕÅÈı£¬½ğ¶îÊÇ 86Ôª5½Ç
+				//éªŒè¯äº¤æ˜“IDä¸€è‡´ï¼Œæ˜¯å¼ ä¸‰ï¼Œé‡‘é¢æ˜¯ 86å…ƒ5è§’
 				if(transactionInfo.getId() == addTransactionInfo.getId() 
-						&& transactionInfo.getUserInfo().getUserName().equals("ÕÅÈı") 
+						&& transactionInfo.getUserInfo().getUserName().equals("å¼ ä¸‰") 
 						&& transactionInfo.getAmount().compareTo(new BigDecimal(86.5)) == 0){
 					
-				      System.out.println("´æÔÚÕÅÈı ´ı¸¶¿î½»Ò×ĞÅÏ¢£¬½»Ò××´Ì¬Îª´ı¸¶¿î£¬½»Ò×½ğ¶îÎª"+transactionInfo.getAmount().doubleValue());
+				      System.out.println("å­˜åœ¨å¼ ä¸‰ å¾…ä»˜æ¬¾äº¤æ˜“ä¿¡æ¯ï¼Œäº¤æ˜“çŠ¶æ€ä¸ºå¾…ä»˜æ¬¾ï¼Œäº¤æ˜“é‡‘é¢ä¸º"+transactionInfo.getAmount().doubleValue());
 				
 				}
 				
@@ -53,52 +53,52 @@ public class Test {
     }
     
 	/**
-	 * ÑéÖ¤
-	 * 2¡¢Ê¹ÓÃÄãËùÏ°¹ßµÄ²âÊÔ¿ò¼Ü
-	 * £¬³õÊ¼»¯3Ìõ½»Ò×³É¹¦ĞÅÏ¢£¬2Ìõ½»Ò×Ê§°ÜĞÅÏ¢¡£
-	 * ÑéÖ¤²éÑ¯½Ó¿Ú°´È«²¿×´Ì¬²éÑ¯¹²5Ìõ½»Ò×£¬
-	 * Ö»²éÑ¯³É¹¦µÄ½»Ò×ÊÇ3Ìõ£¬Ö»²éÑ¯Ê§°ÜµÄ½»Ò×ÊÇ2Ìõ¡£
+	 * éªŒè¯
+	 * 2ã€ä½¿ç”¨ä½ æ‰€ä¹ æƒ¯çš„æµ‹è¯•æ¡†æ¶
+	 * ï¼Œåˆå§‹åŒ–3æ¡äº¤æ˜“æˆåŠŸä¿¡æ¯ï¼Œ2æ¡äº¤æ˜“å¤±è´¥ä¿¡æ¯ã€‚
+	 * éªŒè¯æŸ¥è¯¢æ¥å£æŒ‰å…¨éƒ¨çŠ¶æ€æŸ¥è¯¢å…±5æ¡äº¤æ˜“ï¼Œ
+	 * åªæŸ¥è¯¢æˆåŠŸçš„äº¤æ˜“æ˜¯3æ¡ï¼ŒåªæŸ¥è¯¢å¤±è´¥çš„äº¤æ˜“æ˜¯2æ¡ã€‚
 	 */
     public void verifyTwo(){
     	
-    	//Ìí¼Ó3Ìõ³É¹¦½»Ò×¼ÇÂ¼
+    	//æ·»åŠ 3æ¡æˆåŠŸäº¤æ˜“è®°å½•
     	for(int i=1;i<=3;i++){
-    		//·â×°ÓÃ»§¶ÔÏó
+    		//å°è£…ç”¨æˆ·å¯¹è±¡
     		UserInfo success = new UserInfo();
-    		success.setUserName("ÓÃ»§["+i+"]");
-    		TransactionService.addTransactionInfo(TransactionStatus.BUSIN_SUCCESS.getValue(), success, new BigDecimal(100+i));
+    		success.setUserName("ç”¨æˆ·["+i+"]");
+    		TransactionService.addTransactionInfo(String.valueOf(System.currentTimeMillis()),TransactionStatus.BUSIN_SUCCESS.getValue(), success, new BigDecimal(100+i));
     	}
-    	//Ìí¼Ó3Ìõ³É¹¦½»Ò×¼ÇÂ¼
+    	//æ·»åŠ 2æ¡å¤±è´¥äº¤æ˜“è®°å½•
     	for(int i=1;i<=2;i++){
-    		//·â×°ÓÃ»§¶ÔÏó
+    		//å°è£…ç”¨æˆ·å¯¹è±¡
     		UserInfo fail = new UserInfo();
-    		fail.setUserName("ÓÃ»§["+i+"]");
-    		TransactionService.addTransactionInfo(TransactionStatus.BUSIN_FAIL.getValue(), fail, new BigDecimal(50+i));
+    		fail.setUserName("ç”¨æˆ·["+i+"]");
+    		TransactionService.addTransactionInfo(String.valueOf(System.currentTimeMillis()),TransactionStatus.BUSIN_FAIL.getValue(), fail, new BigDecimal(50+i));
     	}
 		
-    	//È¡³öÈ«²¿×´Ì¬½»Ò×ĞÅÏ¢
+    	//å–å‡ºå…¨éƒ¨çŠ¶æ€äº¤æ˜“ä¿¡æ¯
 		List<TransactionInfo> allTransactionInfoList = TransactionService.getTransactionInfoList(TransactionStatus.ALL_STATUS.getValue());
-		System.out.println(">>>È«²¿×´Ì¬½Ó¿Ú¹²"+allTransactionInfoList.size()+"Ìõ½»Ò×¼ÇÂ¼ĞÅÏ¢.");
+		System.out.println(">>>å…¨éƒ¨çŠ¶æ€æ¥å£å…±"+allTransactionInfoList.size()+"æ¡äº¤æ˜“è®°å½•ä¿¡æ¯.");
         for(TransactionInfo transactionInfo:allTransactionInfoList){
         	System.out.println(transactionInfo.getUserInfo().getUserName()
-        			+",½»Ò×½ğ¶î"+transactionInfo.getAmount().intValue()
-        			+" ×´Ì¬Âë£º"+transactionInfo.getStatus());
+        			+",äº¤æ˜“é‡‘é¢"+transactionInfo.getAmount().intValue()
+        			+" çŠ¶æ€ç ï¼š"+transactionInfo.getStatus());
         }
         System.out.println("-----------------------------");
-    	//È¡³ö³É¹¦×´Ì¬½»Ò×ĞÅÏ¢
+    	//å–å‡ºæˆåŠŸçŠ¶æ€äº¤æ˜“ä¿¡æ¯
 		List<TransactionInfo> successTransactionInfoList = TransactionService.getTransactionInfoList(TransactionStatus.BUSIN_SUCCESS.getValue());
-		System.out.println(">>>³É¹¦×´Ì¬½Ó¿Ú¹²"+successTransactionInfoList.size()+"Ìõ½»Ò×¼ÇÂ¼ĞÅÏ¢.");
+		System.out.println(">>>æˆåŠŸçŠ¶æ€æ¥å£å…±"+successTransactionInfoList.size()+"æ¡äº¤æ˜“è®°å½•ä¿¡æ¯.");
         for(TransactionInfo transactionInfo:successTransactionInfoList){
         	System.out.println(transactionInfo.getUserInfo().getUserName()
-        			+",½»Ò×½ğ¶î"+transactionInfo.getAmount().intValue());
+        			+",äº¤æ˜“é‡‘é¢"+transactionInfo.getAmount().intValue());
         }
         
         System.out.println("-----------------------------");
-    	//È¡³öÊ§°Ü×´Ì¬½»Ò×ĞÅÏ¢
+    	//å–å‡ºå¤±è´¥çŠ¶æ€äº¤æ˜“ä¿¡æ¯
 		List<TransactionInfo> failTransactionInfoList = TransactionService.getTransactionInfoList(TransactionStatus.BUSIN_FAIL.getValue());
-		System.out.println(">>>Ê§°Ü×´Ì¬½Ó¿Ú¹²"+failTransactionInfoList.size()+"Ìõ½»Ò×¼ÇÂ¼ĞÅÏ¢.");
+		System.out.println(">>>å¤±è´¥çŠ¶æ€æ¥å£å…±"+failTransactionInfoList.size()+"æ¡äº¤æ˜“è®°å½•ä¿¡æ¯.");
         for(TransactionInfo transactionInfo:failTransactionInfoList){
-        	System.out.println(transactionInfo.getUserInfo().getUserName()+",½»Ò×½ğ¶î"+transactionInfo.getAmount().intValue());
+        	System.out.println(transactionInfo.getUserInfo().getUserName()+",äº¤æ˜“é‡‘é¢"+transactionInfo.getAmount().intValue());
         }
         
 		

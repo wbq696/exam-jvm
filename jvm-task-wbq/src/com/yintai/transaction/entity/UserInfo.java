@@ -1,17 +1,17 @@
 package com.yintai.transaction.entity;
 
 /**
- * ÓÃ»§ĞÅÏ¢ÊµÌåÀà
+ * ç”¨æˆ·ä¿¡æ¯å®ä½“ç±»
  */
 public class UserInfo {
 
 	/**
-	 * ÓÃ»§ID
+	 * ç”¨æˆ·ID
 	 */
 	private String userId;
 	
 	/**
-	 * ÓÃ»§Ãû³Æ
+	 * ç”¨æˆ·åç§°
 	 */
 	private String userName;
 

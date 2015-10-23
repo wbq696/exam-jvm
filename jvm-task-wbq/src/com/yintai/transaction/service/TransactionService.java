@@ -8,34 +8,34 @@ import com.yintai.transaction.entity.UserInfo;
 import com.yintai.transaction.utils.DateUtil;
 
 /**
- * ½»Ò×ÒµÎñÀà
+ * äº¤æ˜“ä¸šåŠ¡ç±»
  */
 public class TransactionService {
 	
 	/**
-	 * ¸ù¾İ½»Ò××´Ì¬¡¢ÓÃ»§ĞÅÏ¢¡¢½»Ò×½ğ¶î ´´½¨½»Ò×¼ÇÂ¼²¢Ìí¼Ó
+	 * æ ¹æ®äº¤æ˜“çŠ¶æ€ã€ç”¨æˆ·ä¿¡æ¯ã€äº¤æ˜“é‡‘é¢ åˆ›å»ºäº¤æ˜“è®°å½•å¹¶æ·»åŠ 
 	 * @param status
 	 * @param userInfo
 	 * @param amount
 	 * @return
 	 */
-	public static TransactionInfo addTransactionInfo(Integer status,UserInfo userInfo,BigDecimal amount){
+	public static TransactionInfo addTransactionInfo(String transactionId,Integer status,UserInfo userInfo,BigDecimal amount){
 		
-		//·â×°½»Ò×ÊµÌåÀà
+		//å°è£…äº¤æ˜“å®ä½“ç±»
 		TransactionInfo transactionInfo = new TransactionInfo();
-		transactionInfo.setId(System.currentTimeMillis());
+		transactionInfo.setId(transactionId);
 		transactionInfo.setAmount(amount);
 		transactionInfo.setCreateTime(DateUtil.getStringDate());
 		transactionInfo.setStatus(status);
 		transactionInfo.setUserInfo(userInfo);
-		//Ìí¼Ó»º´æ
+		//æ·»åŠ ç¼“å­˜
 		TransactionCache.addTransactionInfo(status, transactionInfo);
 		
 		return transactionInfo;
 	}
 	
 	/**
-	 * ¸ù¾İ½»Ò×ÀàĞÍ²éÑ¯£¬½»Ò×ĞÅÏ¢ÁĞ±í
+	 * æ ¹æ®äº¤æ˜“ç±»å‹æŸ¥è¯¢ï¼Œäº¤æ˜“ä¿¡æ¯åˆ—è¡¨
 	 * @param status
 	 * @return
 	 */

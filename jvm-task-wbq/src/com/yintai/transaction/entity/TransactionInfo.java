@@ -3,50 +3,51 @@ package com.yintai.transaction.entity;
 import java.math.BigDecimal;
 
 /**
- * ½»Ò×ÊµÌåÀà
+ * äº¤æ˜“å®ä½“ç±»
  */
 public class TransactionInfo implements Cloneable{
   
 	/**
-	 * ½»Ò×ID
+	 * äº¤æ˜“ID
 	 */
-	private long id;
+	private String id;
 	
 	/**
-	 * ´´½¨Ê±¼ä
+	 * åˆ›å»ºæ—¶é—´
 	 */
 	private String createTime;
 	
 	/**
-	 * ½»Ò××´Ì¬( 0 ¶©µ¥Ìá½»µÈ´ı¸¶¿î ,1¸¶¿î³É¹¦ ,2 ÉÌÆ··¢»õ ,3 ´ıÊÕ»õ, 4 ½»Ò×³É¹¦,5½»Ò×Ê§°Ü)
+	 * äº¤æ˜“çŠ¶æ€( 0 è®¢å•æäº¤ç­‰å¾…ä»˜æ¬¾ ,1ä»˜æ¬¾æˆåŠŸ ,2 å•†å“å‘è´§ ,3 å¾…æ”¶è´§, 4 äº¤æ˜“æˆåŠŸ,5äº¤æ˜“å¤±è´¥)
 	 */
 	private int status;
 	
 	/**
-	 * ½»Ò×ÀàĞÍ(0 Ö§¸¶ 1ÍË¿î)
+	 * äº¤æ˜“ç±»å‹(0 æ”¯ä»˜ 1é€€æ¬¾)
 	 */
 	private int type;
 	
 	/**
-	 * ½»Ò×½ğ¶î
+	 * äº¤æ˜“é‡‘é¢
 	 */
 	private BigDecimal amount;
 	
 	/**
-	 * »õ±ÒÀàĞÍ (0 ÈËÃÇ±Ò, 1 ÃÀÔª)
+	 * è´§å¸ç±»å‹ (0 äººä»¬å¸, 1 ç¾å…ƒ)
 	 */
 	private int currencyType;
 	
 	/**
-	 * ¿Í»§ĞÅÏ¢(Îª´æ´¢·½±ã£¬Î´Ê¹ÓÃ¶ÔÓ¦¹ØÏµ)
+	 * å®¢æˆ·ä¿¡æ¯(ä¸ºå­˜å‚¨æ–¹ä¾¿ï¼Œæœªä½¿ç”¨å¯¹åº”å…³ç³»)
 	 */
 	private UserInfo userInfo;
 
-	public long getId() {
+
+	public String getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

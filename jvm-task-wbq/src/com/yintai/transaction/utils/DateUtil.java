@@ -7,8 +7,8 @@ public class DateUtil {
 	
 	/**
 	 * 
-	 * 获取现在时间
-	 * @return返回字符串格式yyyy-MM-dd HH:mm:ss
+	 * 鑾峰彇鐜板湪鏃堕棿
+	 * @return杩斿洖瀛楃涓叉牸寮弝yyy-MM-dd HH:mm:ss
 	 */
 	public static String getStringDate() {
 
